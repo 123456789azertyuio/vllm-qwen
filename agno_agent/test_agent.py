@@ -3,7 +3,7 @@ from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 
 VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
-MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen3.5-35B-A3B-Instruct-AWQ")
+MODEL_NAME = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-32B-Instruct-AWQ")
 
 print(f"{VLLM_BASE_URL}")
 
