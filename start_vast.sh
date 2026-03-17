@@ -14,6 +14,6 @@ python3 -m vllm.entrypoints.openai.api_server \
 sleep 15
 
 echo " ChatGPT Interface..."
-export OPENAI_API_BASE_URL=http://localhost:10000/v1
+export OPENAI_API_BASE_URL=http://localhost:8000/v1
 export WEBUI_AUTH=False
-open-webui serve --host 0.0.0.0 --port 10080
+open-webui serve --host 0.0.0.0 --port 10000
