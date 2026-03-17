@@ -4,7 +4,7 @@ echo "Démarrage Vast.ai ..."
 echo "Installation vLLM Open WebUI..."
 pip install vllm open-webui
 
-echo "Démarrage Model Qwen 35B..."
+echo "Model Qwen 35B..."
 python3 -m vllm.entrypoints.openai.api_server \
     --model Qwen/Qwen2.5-32B-Instruct-AWQ \
     --quantization awq \
