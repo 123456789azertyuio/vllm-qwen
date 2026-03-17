@@ -19,7 +19,7 @@ services:
     volumes:
       - model_cache:/root/.cache/huggingface
     command: >
-      --model ${MODEL_NAME:-Qwen/Qwen2.5-32B-Instruct-AWQ}
+      --model ${MODEL_NAME:-Qwen/Qwen2.5-1.5B-Instruct}
       --quantization ${QUANTIZATION:-awq}
       --tensor-parallel-size ${TENSOR_PARALLEL_SIZE:-1}
       --max-model-len 8192
