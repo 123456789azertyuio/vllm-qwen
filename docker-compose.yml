@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  vllm-backend:
+    image: vllm/vllm-openai:latest
+    container_name: vllm_backend
+    ports:
+      - "8000:8000"
+    ipc: host 
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: "all" 
+              capabilities: [gpu]
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    volumes:
+      - model_cache:/root/.cache/huggingface
+    command: >
+      --model ${MODEL_NAME:-Qwen/Qwen3.5-35B-A3B}
+      --quantization ${QUANTIZATION:-awq}
+      --tensor-parallel-size ${TENSOR_PARALLEL_SIZE:-1}
+      --max-model-len 8192
+      --trust-remote-code
+
+  
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open_webui
+    ports:
+      - "8080:8080" 
+    environment:
+      - OPENAI_API_BASE_URL=http://vllm-backend:8000/v1
+      - OPENAI_API_KEY=sk-dummy-key
+      - WEBUI_AUTH=False 
+    volumes:
+      - open_webui_data:/app/backend/data
+    depends_on:
+      - vllm-backend
+
+volumes:
+  model_cache:
+  open_webui_data:
