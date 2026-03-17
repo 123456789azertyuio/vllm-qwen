@@ -6,7 +6,7 @@ pip install vllm open-webui
 
 echo "Démarrage Model Qwen 35B..."
 python3 -m vllm.entrypoints.openai.api_server \
-    --model Qwen/Qwen3.5-35B-A3B-Instruct-AWQ \
+    --model Qwen/Qwen2.5-32B-Instruct-AWQ \
     --quantization awq \
     --tensor-parallel-size 1 \
     --max-model-len 8192 &
